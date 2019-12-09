@@ -7,7 +7,7 @@ Date.prototype.subtractDays = function(days) {
     return date;
 };
 
-const compileOpenPRMessage = async (dayThreshold, login, repoName) => {
+const compileOpenPRMessage = async (dayThreshold, login, repoName, recipients) => {
     let messageList = '';
 
     const prObject = await getOpenPRs(login, repoName);
@@ -27,7 +27,7 @@ const compileOpenPRMessage = async (dayThreshold, login, repoName) => {
         messageList += `<p>${message}</p>`;
     });
 
-    await sendEmail('jdzahrt@gmail.com', repoName, messageList);
+    await sendEmail(recipients, repoName, messageList);
 };
 
 module.exports = {compileOpenPRMessage};
